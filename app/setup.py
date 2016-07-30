@@ -22,4 +22,9 @@ def create_database():
         conn.close()
 
 def create_tables():
-    db.create_all()
+    logging.info("Creating tables")
+    try:
+        db.create_all()
+        logging.info("Created tables")
+    except:
+        logging.error("Failed to create tables")
