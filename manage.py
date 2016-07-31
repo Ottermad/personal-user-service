@@ -1,9 +1,24 @@
+from flask_script import Manager
+from flask_migrate import MigrateCommand
 from sqlalchemy import create_engine
 from sqlalchemy.exc import ProgrammingError
+
+from app import app
 from app.settings import DATABASE_NAME
-from app.models import db
 
+import logging
 
+# Get an instance of a logger
+logging.basicConfig(level=logging.INFO, format='[%(levelname)s] - %(message)s')
+
+manager = Manager(app)
+manager.add_command('db', MigrateCommand)
+
+@manager.command
+def hello():
+    print("hello")
+
+@manager.command
 def create_database():
     logging.info("Creating database")
     engine = create_engine("postgresql://postgres:postgres@db/postgres")
@@ -18,10 +33,5 @@ def create_database():
     finally:
         conn.close()
 
-def create_tables():
-    logging.info("Creating tables")
-    try:
-        db.create_all()
-        logging.info("Created tables")
-    except:
-        logging.error("Failed to create tables")
+if __name__ == "__main__":
+    manager.run()
