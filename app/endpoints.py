@@ -1,7 +1,7 @@
 from flask import Blueprint
 
-blog = Blueprint('blog', __name__)
+user = Blueprint('user', __name__)
 
-@blog.route('/')
+@user.route('/')
 def index():
     return 'Hello World 2'
