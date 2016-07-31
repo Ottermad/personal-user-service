@@ -4,4 +4,4 @@ user = Blueprint('user', __name__)
 
 @user.route('/')
 def index():
-    return 'Hello World 2'
+    return 'User Index'
