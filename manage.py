@@ -33,5 +33,10 @@ def create_database():
     finally:
         conn.close()
 
+@manager.command
+def run():
+    app.run(host='0.0.0.0')
+
+
 if __name__ == "__main__":
     manager.run()
