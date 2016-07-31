@@ -1,5 +1,7 @@
-from .app import app
+from flask import Blueprint
 
-@app.route('/')
+blog = Blueprint('blog', __name__)
+
+@blog.route('/')
 def index():
     return 'Hello World 2'
